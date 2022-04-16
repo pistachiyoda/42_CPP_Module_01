@@ -34,6 +34,11 @@ int main(int argc, char **argv)
             ofs << s2;
             tmp = "";
         }
+        else if (tmp != s1.substr(0, tmp.length()))
+        {
+            ofs << tmp;
+            tmp = "";
+        }
     }
     if (tmp != "")
         ofs << tmp;
