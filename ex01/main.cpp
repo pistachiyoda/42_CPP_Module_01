@@ -1,7 +1,6 @@
 #include "Zombie.hpp"
 
 #define Num_of_zombie 5
-
 int main()
 {
     Zombie *zombie;

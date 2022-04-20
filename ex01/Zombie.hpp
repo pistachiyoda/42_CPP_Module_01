@@ -14,8 +14,8 @@ public:
     void setName(std::string name);
 
 private:
-    int num;
-    std::string name;
+    int _num;
+    std::string _name;
 };
 
 Zombie *zombieHorde(int N, std::string name);
