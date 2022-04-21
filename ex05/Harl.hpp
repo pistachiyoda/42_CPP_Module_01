@@ -1,7 +1,6 @@
 #ifndef HARL_HPP
 #define HARL_HPP
 #include <string>
-#include <map>
 
 class Harl
 {
@@ -14,6 +13,13 @@ private:
     void info();
     void warning();
     void error();
-    std::map<std::string, void (Harl::*)(void)> compmap;
+    // void _complainFuncs[];
 };
 #endif
+
+// double (*const afpOps[])(double, double) = {
+//     Add,
+//     Sub,
+//     Mul,
+//     Div,
+// };
