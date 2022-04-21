@@ -1,6 +1,6 @@
 NAME = losers
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+SRCS = main.cpp Sed.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
