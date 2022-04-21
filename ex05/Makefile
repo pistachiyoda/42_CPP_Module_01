@@ -1,5 +1,5 @@
 NAME = harl
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
