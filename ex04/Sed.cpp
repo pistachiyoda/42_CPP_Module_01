@@ -11,7 +11,7 @@ Sed::~Sed()
 void Sed::openFile()
 {
     _ifs.open(_filename);
-    if (!_ifs)
+    if (!_ifs.is_open())
     {
         std::cerr << "failed to open " << _filename << std::endl;
         std::exit(1);
@@ -21,7 +21,7 @@ void Sed::openFile()
 void Sed::generateOutFile()
 {
     _ofs.open(_filename + ".replace");
-    if (!_ofs)
+    if (!_ofs.is_open())
     {
         std::cerr << "failed to open " << _filename << ".replace" << std::endl;
         std::exit(1);
@@ -30,14 +30,14 @@ void Sed::generateOutFile()
 
 void Sed::outputWithReplace()
 {
+    char c;
     std::string tmp = "";
 
-    while (!_ifs.eof())
+    while (_ifs.get(c))
     {
-        char c;
-        _ifs.get(c);
+        std::cout << c;
         tmp += c;
-        if (tmp == _s1)
+        if (tmp.compare(_s1) == 0)
         {
             _ofs << _s2;
             tmp = "";
