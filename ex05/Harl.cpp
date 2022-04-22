@@ -1,49 +1,30 @@
-#include <iostream>
 #include "Harl.hpp"
 
 Harl::Harl()
 {
+    _complainFuncs[0] = &Harl::debug;
+    _complainFuncs[1] = &Harl::info;
+    _complainFuncs[2] = &Harl::warning;
+    _complainFuncs[3] = &Harl::error;
+
+    _complaintLevels[0] = "debug";
+    _complaintLevels[1] = "info";
+    _complaintLevels[2] = "warning";
+    _complaintLevels[3] = "error";
 }
 
 void Harl::complain(std::string level)
 {
-    std::string complaintLevels[] = {"debug", "info", "warning", "error"};
-
-    void (Harl::*complainFuncs[])(void) = {
-        &Harl::debug,
-        &Harl::info,
-        &Harl::warning,
-        &Harl::error};
-    // void(Harl::_complainFuncs[])(void) = {
-    //     Harl::debug,
-    //     &Harl::info,
-    //     &Harl::warning,
-    //     &Harl::error,
-    // };
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     if (level.compare(_complainList[i]) == 0)
-    //         *_complainFuncs[i]();
-    // }
-    // void (Karen::*selectedComplaint)(void) = complaint[i];
-    // void (Harl::*selectedComplain)(void) = complainFuncs[0];
-    // (*selectedComplain)();
-    // *(complainFuncs[0])();
-    // complainFuncs[0];
     for (int i = 0; i < 4; i++)
     {
-        void (Harl::*func)(void) = complainFuncs[i]; // この代入はなぜ必要...？ funcはここで宣言されている？
-        if (level.compare(complaintLevels[i]) == 0)
+        if (level.compare(_complaintLevels[i]) == 0)
         {
-            (this->*func)(); // thisなぜ必要？
+            (this->*(_complainFuncs[i]))();
             return;
         }
     }
     std::cerr << "invalid level" << std::endl;
 }
-
-// void (*func)(void);
-// void (*)(void);
 
 void Harl::debug()
 {

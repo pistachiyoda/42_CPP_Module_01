@@ -1,7 +1,7 @@
 #ifndef HARL_HPP
 #define HARL_HPP
 #include <string>
-
+#include <iostream>
 class Harl
 {
 public:
@@ -13,13 +13,7 @@ private:
     void info();
     void warning();
     void error();
-    // void _complainFuncs[];
+    void (Harl::*_complainFuncs[4])();
+    std::string _complaintLevels[4];
 };
 #endif
-
-// double (*const afpOps[])(double, double) = {
-//     Add,
-//     Sub,
-//     Mul,
-//     Div,
-// };
