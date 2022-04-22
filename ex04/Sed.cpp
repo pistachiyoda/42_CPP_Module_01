@@ -30,27 +30,29 @@ void Sed::generateOutFile()
 
 void Sed::outputWithReplace()
 {
-    char c;
-    std::string tmp = "";
-
     if (_s1 == "" | _s2 == "")
-        std::cerr << "Set more than 1 character string s1, s2." << std::endl;
-
-    while (_ifs.get(c))
     {
-        tmp += c;
-        if (tmp.compare(_s1) == 0)
-        {
-            _ofs << _s2;
-            tmp = "";
-        }
-        else if (tmp != _s1.substr(0, tmp.length()))
-        {
-            _ofs << tmp;
-            tmp = "";
-        }
+        std::cerr << "Set more than 1 character string s1, s2." << std::endl;
+        std::exit(1);
     }
-    if (tmp != "")
-        _ofs << tmp;
+
+    std::string buf;
+    while (std::getline(_ifs, buf))
+    {
+        std::string out = "";
+        while (buf != "")
+        {
+            size_t pos = buf.find(_s1);
+            if (pos == std::string::npos)
+            {
+                out += buf;
+                break;
+            }
+            out += buf.substr(0, pos);
+            out += _s2;
+            buf.erase(0, pos + _s1.length());
+        }
+        _ofs << out << std::endl;
+    }
     _ofs.close();
 }
