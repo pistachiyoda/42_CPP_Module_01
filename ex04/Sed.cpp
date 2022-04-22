@@ -33,9 +33,11 @@ void Sed::outputWithReplace()
     char c;
     std::string tmp = "";
 
+    if (_s1 == "" | _s2 == "")
+        std::cerr << "Set more than 1 character string s1, s2." << std::endl;
+
     while (_ifs.get(c))
     {
-        std::cout << c;
         tmp += c;
         if (tmp.compare(_s1) == 0)
         {
