@@ -37,8 +37,14 @@ void Sed::outputWithReplace()
     }
 
     std::string buf;
+    bool isFirstLine = true;
     while (std::getline(_ifs, buf))
     {
+        if (!isFirstLine)
+            _ofs << std::endl;
+        else
+            isFirstLine = false;
+
         std::string out = "";
         while (buf != "")
         {
@@ -52,7 +58,7 @@ void Sed::outputWithReplace()
             out += _s2;
             buf.erase(0, pos + _s1.length());
         }
-        _ofs << out << std::endl;
+        _ofs << out;
     }
     _ofs.close();
 }
